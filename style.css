@@ -530,122 +530,259 @@ body {
 /* =====================
    TRUST
 ===================== */
+/* =====================
+   TRUST (PREMIUM UX)
+===================== */
+
 .trust {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
 }
 
+/* CARD */
 .stat {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 12px;
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 26px 20px;
+    text-align: center;
+
+    backdrop-filter: blur(12px);
+    transition: all 0.35s ease;
+    overflow: hidden;
 }
 
+/* glow effect */
+.stat::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(0,208,132,0.18), transparent 60%);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.stat:hover::before {
+    opacity: 1;
+}
+
+.stat:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,208,132,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* ICON */
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    background: rgba(0,208,132,0.12);
+    color: var(--primary);
+}
+
+.stat-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* NUMBER */
+.stat h2 {
+    font-size: 34px;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+/* LABEL */
+.stat p {
+    font-size: 15px;
+    color: #d1d5db;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+/* DESCRIPTION */
+.stat small {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media (max-width: 1024px) {
-
     .trust {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
     }
+}
+
+@media (max-width: 768px) {
+    .trust {
+        grid-template-columns: 1fr;
+    }
 
     .stat {
-        padding: 18px;
+        padding: 20px;
     }
 
     .stat h2 {
         font-size: 28px;
     }
-
-    .stat p {
-        font-size: 14px;
-    }
-
-    .stat small {
-        font-size: 12px;
-    }
 }
-
-
-@media (max-width: 768px) {
-
-    .trust {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .stat {
-        padding: 16px;
-        border-radius: 10px;
-    }
-
-    .stat h2 {
-        font-size: 24px;
-    }
-
-    .stat p {
-        font-size: 14px;
-    }
-
-    .stat small {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-}
-
-
-
 /* =====================
-   ABOUT
+   ABOUT (PREMIUM UX)
 ===================== */
+
+.about {
+    position: relative;
+}
+
+/* layout */
 .about-container {
     display: flex;
-    gap: 50px;
     align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+/* badge */
+.about-badge {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 18px auto; /* centers it */
+    padding: 8px 16px;
+    border-radius: 50px;
+
+    font-size: 16px;   /* increased */
+    font-weight: 600;    /* bolder */
+
+    color: var(--primary);
+    background: rgba(0,208,132,0.12);
+    border: 1px solid rgba(0,208,132,0.3);
+    letter-spacing: 0.3px;
+}
+
+/* heading */
+.about-text h2 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+/* paragraphs */
+.about-text p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+    max-width: 600px;
+}
+
+/* IMAGE SECTION */
+.about-image {
+    position: relative;
 }
 
 .about-image img {
-    width: 300px;
-    border-radius: 15px;
+    width: 320px;
+    border-radius: 18px;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s ease;
 }
 
+/* glow behind image */
+.image-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 20px;
+    left: 20px;
+    background: radial-gradient(circle, rgba(0,208,132,0.25), transparent 60%);
+    filter: blur(40px);
+    z-index: 1;
+}
+
+/* hover effect */
+.about-image:hover img {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* =====================
+   HIGHLIGHTS (CARD STYLE)
+===================== */
+
 .about-highlights {
-    margin-top: 20px;
+    margin-top: 25px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
+
+.highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 14px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    font-size: 14px;
+    color: #d1d5db;
+
+    transition: 0.3s ease;
+}
+
+.highlight-card span {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.highlight-card:hover {
+    transform: translateX(6px);
+    border-color: rgba(0,208,132,0.35);
+    background: rgba(0,208,132,0.06);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media (max-width: 1024px) {
 
     .about-container {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
+        gap: 35px;
     }
 
-    .about-image img {
-        width: 260px;
+    .about-text p {
+        margin: 0 auto 14px;
     }
 
-    .about-highlights {
-        justify-items: center;
+    .about-image img,
+    .image-glow {
+        width: 280px;
+        height: 280px;
     }
 }
 
-
 @media (max-width: 768px) {
-
-    .about-container {
-        gap: 25px;
-    }
-
-    .about-image img {
-        width: 220px;
-        border-radius: 12px;
-    }
 
     .about-text h2 {
         font-size: 26px;
@@ -653,19 +790,24 @@ body {
 
     .about-text p {
         font-size: 14px;
-        line-height: 1.6;
     }
 
     .about-highlights {
         grid-template-columns: 1fr;
-        gap: 8px;
-        margin-top: 15px;
     }
 
-    .about-highlights div {
-        font-size: 14px;
+    .highlight-card {
+        justify-content: center;
+        font-size: 13px;
+    }
+
+    .about-image img,
+    .image-glow {
+        width: 220px;
+        height: 220px;
     }
 }
+
 
 
 /* =====================
@@ -818,79 +960,319 @@ body {
 
 
 
-
-
 /* =====================
-   SERVICES
+   SERVICES (PREMIUM UX)
 ===================== */
+
+.services {
+    text-align: center;
+}
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 28px;
+    margin-top: 40px;
 }
 
+/* CARD BASE */
 .card {
-    background: var(--card);
-    padding: 25px;
-    border-radius: 15px;
-    transition: 0.3s;
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 25px;
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    text-align: left;
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+/* hover glow */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(0,208,132,0.15), transparent 60%);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card:hover {
     transform: translateY(-10px);
+    border-color: rgba(0,208,132,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
-@media (max-width: 1024px) {
+/* ICON */
+.card-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    border-radius: 12px;
+    background: rgba(0,208,132,0.12);
+    margin-bottom: 12px;
+}
 
+/* TITLE */
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+/* DESCRIPTION */
+.card-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* LIST */
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card li {
+    font-size: 13.5px;
+    color: #d1d5db;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+}
+
+/* check bullets */
+.card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* =====================
+   RESPONSIVE UPGRADE
+===================== */
+
+@media (max-width: 1024px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        gap: 20px;
     }
 
     .card {
-        padding: 22px;
-    }
-
-    .card h3 {
-        font-size: 17px;
-    }
-
-    .card p,
-    .card li {
-        font-size: 14px;
+        padding: 24px;
     }
 }
 
 @media (max-width: 768px) {
-
     .cards {
         grid-template-columns: 1fr;
-        gap: 14px;
     }
 
     .card {
-        padding: 18px;
-        border-radius: 12px;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
     }
 
     .card h3 {
         font-size: 16px;
     }
 
-    .card p {
-        font-size: 13.5px;
-        line-height: 1.5;
+    .card li {
+        font-size: 13px;
+    }
+}
+
+
+
+/* =====================
+   SERVICES (PREMIUM UX)
+===================== */
+
+.services {
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    margin-top: 40px;
+}
+
+/* =====================
+   CARD BASE
+===================== */
+.card {
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 25px;
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    text-align: left;
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+/* glow background */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(0,208,132,0.18), transparent 60%);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0,208,132,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+
+/* =====================
+   ICON FIX (IMPORTANT)
+===================== */
+.card-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(0,208,132,0.12);
+    margin-bottom: 14px;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* FORCE SVG COLOR (FIX BLACK ICON ISSUE) */
+.card-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--primary) !important;
+    stroke: var(--primary) !important;
+}
+
+/* hover icon glow */
+.card:hover .card-icon {
+    box-shadow: 0 0 0 6px rgba(0,208,132,0.08);
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+/* =====================
+   TEXT
+===================== */
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 15px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+/* =====================
+   LIST
+===================== */
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.card li {
+    font-size: 13.5px;
+    color: #d1d5db;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+}
+
+/* check bullets */
+.card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+    .card h3 {
+        font-size: 16px;
     }
 
     .card li {
         font-size: 13px;
-        line-height: 1.4;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
     }
 }
+
 
 
 /* =====================
