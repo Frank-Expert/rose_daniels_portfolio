@@ -185,14 +185,9 @@ body {
         justify-content: center;
     }
 
-    /* CONTACT */
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
-    }
 
     .contact-form {
-        width: 100%;
+        width: auto;
     }
 }
 
@@ -226,6 +221,55 @@ body {
 
 
 
+/* =====================
+   SECTION BASE
+===================== */
+section {
+    padding: 100px 10%;
+    position: relative;
+}
+
+/* animation state */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =====================
+   LARGE TABLETS (≤1024px)
+===================== */
+@media (max-width: 1024px) {
+    section {
+        padding: 80px 6%;
+    }
+}
+
+/* =====================
+   TABLETS / SMALL SCREENS (≤768px)
+===================== */
+@media (max-width: 768px) {
+    section {
+        padding: 70px 5%;
+    }
+}
+
+/* =====================
+   MOBILE (≤480px)
+===================== */
+@media (max-width: 480px) {
+    section {
+        padding: 60px 4%;
+    }
+}
+
+/* =====================
+   SMALL MOBILE (≤360px)
+===================== */
+@media (max-width: 360px) {
+    section {
+        padding: 50px 4%;
+    }
+}
 
 
 /* =====================
@@ -285,10 +329,15 @@ body {
 
 /* Highlight */
 .highlight {
+    color: #00d084; /* fallback */
+
     background: linear-gradient(90deg, #00d084, #00ffa6);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
 }
+
 
 /* Subtext */
 .hero-subtext {
@@ -1514,48 +1563,99 @@ body {
 }
 
 
-
 /* =====================
-   TESTIMONIAL
-===================== */
-/* =====================
-   TESTIMONIAL PREMIUM
+   TESTIMONIAL (CLEAN PREMIUM)
 ===================== */
 
-.testimonial-box {
-    max-width: 650px;
-    margin: auto;
+.testimonial {
     text-align: center;
+    position: relative;
 }
+
+/* HEADINGS */
+.testimonial h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.testimonial h2:last-of-type {
+    font-size: 20px;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* CTA */
+.testimonial .btn {
+    margin-bottom: 40px;
+}
+
+/* WRAPPER */
+.testimonial-box {
+    max-width: 720px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+/* =====================
+   CARD
+===================== */
 
 .testimonial-card {
+    position: relative;
+
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
-    padding: 35px 25px;
-    border-radius: 20px;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    transition: all 0.4s ease;
+    border-radius: 22px;
+
+    padding: 45px 30px;
+    backdrop-filter: blur(16px);
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    transition: all 0.35s ease;
 }
 
+/* hover */
+.testimonial-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,208,132,0.3);
+}
+
+/* QUOTE ICON */
+.quote-icon {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-size: 60px;
+    color: rgba(0,208,132,0.12);
+    font-weight: bold;
+}
+
+/* IMAGE */
 .testimonial-card img {
-    width: 90px;
-    height: 90px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+
+    margin-bottom: 18px;
     border: 2px solid rgba(0,208,132,0.5);
+
+    transition: 0.3s ease;
 }
 
+/* TEXT */
 .testimonial-card p {
     font-size: 16px;
+    line-height: 1.75;
     color: var(--text);
-    line-height: 1.7;
-    margin-bottom: 20px;
-    min-height: 70px;
-    transition: opacity 0.4s ease;
+
+    max-width: 560px;
+    margin: 0 auto 22px;
+
+    opacity: 1;
 }
 
+/* CLIENT INFO */
 .client-info strong {
     display: block;
     font-size: 16px;
@@ -1567,21 +1667,30 @@ body {
     color: var(--muted);
 }
 
+/* =====================
+   ANIMATION (JS SYNC)
+===================== */
+
+#testimonial-text,
+#testimonial-name,
+#testimonial-role,
+#testimonial-img {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media (max-width: 1024px) {
 
-    .testimonial-box {
-        max-width: 600px;
-        padding: 0 10px;
-    }
-
     .testimonial-card {
-        padding: 30px 22px;
+        padding: 35px 25px;
     }
 
     .testimonial-card img {
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
     }
 
     .testimonial-card p {
@@ -1591,29 +1700,48 @@ body {
 
 @media (max-width: 768px) {
 
-    .testimonial-box {
-        max-width: 100%;
-        padding: 0 15px;
+    .testimonial h2 {
+        font-size: 26px;
+    }
+
+    .testimonial h2:last-of-type {
+        font-size: 16px;
     }
 
     .testimonial-card {
-        padding: 25px 18px;
-        border-radius: 16px;
-    }
-
-    .testimonial-card img {
-        width: 70px;
-        height: 70px;
+        padding: 30px 20px;
+        border-radius: 18px;
     }
 
     .testimonial-card p {
-        font-size: 14px;
+        font-size: 14.5px;
         line-height: 1.6;
-        min-height: auto;
+    }
+
+    .quote-icon {
+        font-size: 40px;
+        top: 12px;
+        left: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .testimonial-card {
+        padding: 25px 18px;
+    }
+
+    .testimonial-card img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .testimonial-card p {
+        font-size: 13.5px;
     }
 
     .client-info strong {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .client-info span {
@@ -1623,50 +1751,21 @@ body {
 
 
 
-@media (max-width: 480px) {
-
-    .testimonial-card {
-        padding: 20px 15px;
-        border-radius: 14px;
-    }
-
-    .testimonial-card img {
-        width: 65px;
-        height: 65px;
-        margin-bottom: 10px;
-    }
-
-    .testimonial-card p {
-        font-size: 13px;
-    }
-
-    .client-info strong {
-        font-size: 14px;
-    }
-
-    .client-info span {
-        font-size: 11px;
-    }
-}
-
-
-
 /* =====================
-   CONTACT SOCIAL GRID
+   CONTACT GRID
 ===================== */
-
 .social-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    gap: 22px;
     margin-top: 40px;
 }
 
 /* =====================
-   SOCIAL CARD BASE
+   SOCIAL CARD
 ===================== */
-
 .social-card {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -1680,23 +1779,22 @@ body {
     text-decoration: none;
     color: var(--text);
 
+    backdrop-filter: blur(12px);
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
 }
 
 .social-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(0,208,132,0.5);
+    border-color: rgba(0,208,132,0.4);
     box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 
 /* =====================
-   ICONS
+   ICON BASE
 ===================== */
-
 .social-card .icon {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
 
     display: flex;
     align-items: center;
@@ -1704,18 +1802,24 @@ body {
 
     border-radius: 12px;
     background: rgba(255,255,255,0.06);
+
+    transition: 0.3s ease;
 }
 
 .social-card svg {
     width: 22px;
     height: 22px;
-    fill: var(--primary);
+    fill: currentColor;
+}
+
+/* hover micro animation */
+.social-card:hover .icon {
+    transform: scale(1.1) rotate(3deg);
 }
 
 /* =====================
-   TEXT STYLES
+   TEXT
 ===================== */
-
 .social-card h3 {
     font-size: 15px;
     margin-bottom: 3px;
@@ -1727,102 +1831,90 @@ body {
 }
 
 /* =====================
-   BRAND ACCENTS
+   BRAND COLORS
 ===================== */
 
-.social-card.phone .icon {
-    background: rgba(59, 130, 246, 0.12);
+/* WhatsApp (PRIMARY CTA) */
+.wa-icon {
+    background: #25D366;
+    color: #fff;
 }
 
-.social-card.instagram .icon {
-    background: rgba(225, 48, 108, 0.12);
-}
-
-.social-card.email .icon {
-    background: rgba(0, 208, 132, 0.12);
-}
-
-/* PRIMARY WHATSAPP CTA */
 .social-card.wa-primary {
-    background: linear-gradient(135deg, #00d084, #00ffa6);
-    color: #000;
-    font-weight: 600;
-}
-
-.social-card.wa-primary svg {
-    fill: #000;
+    border-color: rgba(37,211,102,0.4);
 }
 
 .social-card.wa-primary:hover {
-    box-shadow: 0 10px 30px rgba(0,208,132,0.3);
+    border-color: #25D366;
+    box-shadow: 0 15px 40px rgba(37,211,102,0.25);
 }
 
-@media (max-width: 1024px) {
+/* Phone */
+.social-card.phone .icon {
+    background: rgba(59,130,246,0.15);
+    color: #3b82f6;
+}
 
+/* Instagram */
+.social-card.instagram .icon {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: #fff;
+}
+
+/* Email */
+.social-card.email .icon {
+    background: rgba(0,208,132,0.15);
+    color: var(--primary);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 1024px) {
     .social-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
+        gap: 18px;
         margin-top: 30px;
     }
 
     .social-card {
         padding: 16px;
+    }
+
+    .social-card .icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .social-card h3 {
+        font-size: 14px;
+    }
+
+    .social-card p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .social-card {
+        padding: 15px;
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-card {
+        padding: 13px;
         gap: 12px;
     }
 
     .social-card .icon {
         width: 40px;
         height: 40px;
-    }
-
-    .social-card h3 {
-        font-size: 14px;
-    }
-
-    .social-card p {
-        font-size: 12px;
-    }
-}
-
-
-@media (max-width: 768px) {
-
-    .social-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin-top: 25px;
-    }
-
-    .social-card {
-        padding: 14px;
-        border-radius: 14px;
-    }
-
-    .social-card .icon {
-        width: 38px;
-        height: 38px;
-    }
-
-    .social-card h3 {
-        font-size: 14px;
-    }
-
-    .social-card p {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .social-card {
-        padding: 12px;
-        gap: 10px;
-    }
-
-    .social-card .icon {
-        width: 36px;
-        height: 36px;
     }
 
     .social-card svg {
@@ -1841,129 +1933,73 @@ body {
 
 
 
-
-
 /* =====================
-   FLOATING WHATSAPP BUTTON
+   FLOATING WHATSAPP (PREMIUM)
 ===================== */
 
 #whatsapp-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 24px;
+    right: 24px;
 
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
 
-    background: #25D366;
+    background: linear-gradient(135deg, #25D366, #1ebe5d);
     border-radius: 50%;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     z-index: 999;
 
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-/* icon */
+/* ICON */
 #whatsapp-float svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
+    color: #fff; /* uses currentColor */
 }
 
-/* hover */
+/* HOVER */
 #whatsapp-float:hover {
-    transform: scale(1.12) translateY(-2px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.45);
 }
 
-/* active click */
+/* CLICK FEEDBACK */
 #whatsapp-float:active {
-    transform: scale(1.05);
+    transform: scale(0.95);
 }
 
-
-/* =====================
-   SCROLL ANIMATION
-===================== */
-
-
-section {
-    padding: 100px 10%;
-    position: relative;
+/* PULSE EFFECT (subtle, premium) */
+#whatsapp-float::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.4);
+    animation: whatsappPulse 2.5s infinite;
+    z-index: -1;
 }
 
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
-
-@media (max-width: 1024px) {
-
-    section {
-        padding: 80px 6%;
+@keyframes whatsappPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
     }
-
-    #whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 18px;
-        right: 18px;
+    70% {
+        transform: scale(1.6);
+        opacity: 0;
     }
-
-    #whatsapp-float svg {
-        width: 26px;
-        height: 26px;
+    100% {
+        opacity: 0;
     }
 }
-
-@media (max-width: 768px) {
-
-    section {
-        padding: 70px 5%;
-    }
-
-    #whatsapp-float {
-        width: 52px;
-        height: 52px;
-        bottom: 16px;
-        right: 16px;
-    }
-
-    #whatsapp-float svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    section {
-        padding: 60px 5%;
-    }
-
-    #whatsapp-float {
-        width: 48px;
-        height: 48px;
-        bottom: 14px;
-        right: 14px;
-    }
-
-    #whatsapp-float svg {
-        width: 22px;
-        height: 22px;
-    }
-}
-
 
 
 /* =====================
